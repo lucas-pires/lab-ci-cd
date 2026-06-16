@@ -5,7 +5,9 @@ WORKDIR /app
 
 COPY . /app
 
-RUN apk add --no-cache curl \
+RUN apk update \
+    && apk upgrade --no-cache libcrypto3 libssl3 \
+    && apk add --no-cache curl \
     && pip install --trusted-host pypi.python.org -r requirements.txt
 
 EXPOSE 8000
